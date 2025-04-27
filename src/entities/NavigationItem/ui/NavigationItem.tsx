@@ -1,0 +1,14 @@
+import Link from "next/link";
+import Image from "next/image";
+import { observer } from "mobx-react-lite";
+import { INavigationItem } from "../model/types";
+
+export const NavigationItem = observer(({ icon, alt, href, isActive }: INavigationItem) => {
+  return (
+    <li className={`relative w-15 h-15 rounded-2xl ${isActive ? 'bg-black' : 'bg-transparent'} flex items-center justify-center transition-all ${isActive ? '' : 'hover:scale-110'}`}>
+      <Link href={href} className="absolute inset-0 flex items-center justify-center">
+        <Image className={`${isActive ? 'invert' : ''}`} src={icon} alt={alt} width={32} height={32} />
+      </Link>
+    </li>
+  );
+}); 
