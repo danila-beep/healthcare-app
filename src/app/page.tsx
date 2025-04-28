@@ -1,11 +1,12 @@
 "use client";
-import { useState } from "react";
 import { Navigation } from "@/widgets/Navigation/ui/Navigation";
 import { Header } from "@/widgets/Header/ui/Header";
-import { HealthGrid } from "@/widgets/HealthGrid/ui/HealthGrid";
 import { BMICalculator } from "@/widgets/BMICalculator/ui/BMICalculator";
-import { EditHealthMetricModal } from "@/features/EditHealthMetric";
 import { useModal } from "@/shared/lib/hooks/useModal";
+import { HealthGrid } from "@/widgets/HealthGrid/ui/HealthGrid";
+import { EditHealthMetricModal } from "@/features/EditHealthMetric";
+import { useState } from "react";
+
 
 export default function Home() {
   const { isOpen, open, close } = useModal();

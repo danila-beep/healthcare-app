@@ -8,14 +8,14 @@ interface HealthGridProps {
 }
 
 export const HealthGrid = observer(({ handleOpenModal }: HealthGridProps) => {
-  const { metrics } = useHealthMetrics();
+  const { metrics } = useHealthMetrics("medical");
 
   return (
     <div className="grid grid-cols-3 gap-8 justify-between mt-7">
       {metrics.map((metric) => (
         <HealthCard 
-          key={metric.id} 
-          {...metric} 
+          key={metric.name} 
+          {...metric}
           handleOpenModal={handleOpenModal}
         />
       ))}

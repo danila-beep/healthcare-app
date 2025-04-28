@@ -16,7 +16,7 @@ interface EditHealthMetricModalProps {
 
 export const EditHealthMetricModal = observer(
   ({ isOpen, onClose, initialMetricId }: EditHealthMetricModalProps) => {
-    const { metrics, updateMetric } = useHealthMetrics();
+    // const { metrics, updateMetric } = useHealthMetrics();
     const { createHealthChangeNotification } = useNotificationStore();
     const [activeMetricId, setActiveMetricId] = useState(initialMetricId);
     const [value, setValue] = useState("");

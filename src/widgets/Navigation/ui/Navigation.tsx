@@ -9,7 +9,7 @@ export const Navigation = observer(() => {
   const { items } = useNavigation();
 
   return (
-    <nav className="min-w-25 py-10 h-full flex flex-col items-center gap-15 bg-white rounded-l-3xl">
+    <nav className="min-w-25 py-10 h-auto flex flex-col items-center gap-15 bg-white rounded-l-3xl">
       <Link href="/" className="transition-transform hover:scale-110">
         <Image src="/logo.png" alt="logo" width={40} height={40} />
       </Link>
