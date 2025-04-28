@@ -6,6 +6,7 @@ import { Tabs } from "@/shared/ui/Tabs/Tabs";
 import { Input } from "@/shared/ui/Input/Input";
 import { useHealthMetrics } from "@/entities/HealthCard/model/hooks/useHealthMetrics";
 import { useNotificationStore } from "@/entities/Notification/model/hooks/useNotificationStore";
+import { validateHealthMetric } from "@/shared/lib/validation/healthMetrics";
 
 interface EditHealthMetricModalProps {
   isOpen: boolean;
@@ -36,24 +37,62 @@ export const EditHealthMetricModal = observer(
 
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
-      if (!value) {
-        setError("Please enter a value");
+      if (!activeMetric) return;
+
+      console.log(activeMetric.type);
+
+      const validationResult = validateHealthMetric(
+        value,
+        activeMetric.type,
+        activeMetric.title
+      );
+
+      if (!validationResult.isValid) {
+        setError(validationResult.error || "Ошибка валидации");
         return;
       }
 
-      const numValue = Number(value);
-      if (isNaN(numValue)) {
-        setError("Please enter a numeric value");
-        return;
+      updateMetric(activeMetricId, { value: validationResult.value });
+      if (validationResult.value) {
+        createHealthChangeNotification(
+          activeMetric,
+          activeMetric.value,
+          validationResult.value
+        );
       }
-
-      updateMetric(activeMetricId, { value: numValue });
-      if (activeMetric) {
-        createHealthChangeNotification(activeMetric, activeMetric.value, numValue);
-      }
+      
       setValue("");
       setError("");
       onClose();
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      setValue(newValue);
+      
+      if (activeMetric) {
+        const validationResult = validateHealthMetric(
+          newValue,
+          activeMetric.type,
+          activeMetric.title
+        );
+        setError(validationResult.error || "");
+      }
+    };
+
+    const getPlaceholder = (metric: typeof activeMetric) => {
+      if (!metric) return "";
+      
+      switch (metric.type) {
+        case "blood_pressure":
+          return "Например: 120/80";
+        case "temperature":
+          return "Например: 36.6";
+        case "pulse":
+          return "Например: 70";
+        default:
+          return `Введите значение в ${metric.unit}`;
+      }
     };
 
     const tabs = metrics.map((metric) => ({
@@ -64,10 +103,10 @@ export const EditHealthMetricModal = observer(
     return (
       <Modal isOpen={isOpen} onClose={onClose} className="p-6 min-w-200">
         <h2 className="font-mulish text-2xl leading-6 font-bold pb-1">
-          Add Health Metrics
+          Добавить показатели здоровья
         </h2>
         <p className="font-mulish text-sm leading-4 text-gray-600 mb-6">
-          Add a new health metric to your dashboard.
+          Добавьте новые показатели здоровья в ваш дашборд.
         </p>
 
         <Tabs
@@ -82,7 +121,7 @@ export const EditHealthMetricModal = observer(
             <div className="flex flex-col gap-4">
               <div className="flex items-center justify-start gap-2">
                 <span className="font-mulish text-sm text-gray-600">
-                  Current value:
+                  Текущее значение:
                 </span>
                 <span className="font-mulish text-sm font-bold">
                   {activeMetric.value} {activeMetric.unit}
@@ -90,13 +129,10 @@ export const EditHealthMetricModal = observer(
               </div>
 
               <Input
-                label="New value"
+                label="Новое значение"
                 value={value}
-                onChange={(e) => {
-                  setValue(e.target.value);
-                  setError("");
-                }}
-                placeholder={`Enter new value in ${activeMetric.unit}`}
+                onChange={handleInputChange}
+                placeholder={getPlaceholder(activeMetric)}
                 error={error}
               />
             </div>

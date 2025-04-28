@@ -3,6 +3,7 @@ import { IHealthMetric } from "@/entities/HealthCard/model/types";
 export const INITIAL_HEALTH_METRICS: IHealthMetric[] = [
   {
     id: "1",
+    type: "blood_sugar",
     title: "Blood Sugar",
     icon: "/icons/BloodShugar.svg",
     iconBgColor: "bg-[#F8DEBD]",
@@ -14,6 +15,7 @@ export const INITIAL_HEALTH_METRICS: IHealthMetric[] = [
   },
   {
     id: "2",
+    type: "pulse",
     title: "Heart Rate",
     icon: "/icons/HeartRate.svg",
     iconBgColor: "bg-[#FBF0F3]",
@@ -25,6 +27,7 @@ export const INITIAL_HEALTH_METRICS: IHealthMetric[] = [
   },
   {
     id: "3",
+    type: "blood_pressure",
     title: "Blood Pressure",
     icon: "/icons/BloodPreasure.svg",
     iconBgColor: "bg-[#D0FBFF]",
