@@ -1,12 +1,8 @@
-import { navigationStore } from './navigation.store';
-import { healthStore } from './health.store';
-import { notificationStore } from './notification.store';
-import { usersStore } from './users.store';
+import { usersStore } from "@/shared/stores/user/user.store";
+import { navigationStore } from "@/shared/stores/navigation/navigation.store";
 
 export class RootStore {
   navigationStore = navigationStore;
-  healthStore = healthStore;
-  notificationStore = notificationStore;
   usersStore = usersStore;
 }
 
