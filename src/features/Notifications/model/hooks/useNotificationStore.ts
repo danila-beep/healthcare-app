@@ -1,4 +1,4 @@
-import { useStore } from "@/app/providers/StoreProvider";
+import { useStore } from "@/app/store/StoreContext";
 
 export const useNotificationStore = () => {
   const { usersStore } = useStore();
@@ -8,5 +8,6 @@ export const useNotificationStore = () => {
     markAllAsRead: usersStore.markAllAsRead,
     removeNotification: usersStore.removeNotification,
     unreadCount: usersStore.getUserUnreadNotifications().length,
+    addNotification: usersStore.addNotification,
   };
 };

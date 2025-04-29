@@ -161,6 +161,7 @@ class UsersStore {
     const metric = this.userData.healthMetrics.find(
       (metric) => metric.name === metricName
     );
+    console.log("metric in store", newValue);
     if (metric) {
       metric.value = newValue;
       this.setUserToLocalStorage();

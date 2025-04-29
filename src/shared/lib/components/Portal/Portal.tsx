@@ -7,7 +7,7 @@ interface PortalProps {
   containerId?: string;
 }
 
-export const Portal = ({ children, containerId = "portal-root" }: PortalProps) => {
+export const Portal = ({ children, containerId = "modal" }: PortalProps) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

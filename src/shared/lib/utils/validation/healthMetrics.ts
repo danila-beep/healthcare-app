@@ -47,26 +47,33 @@ export const ValidateBloodPressureValue = (value: string): IHealthMetricValidati
     errorMessage: "",
   };
 
+  if (!value.includes("/")) {
+    console.log("value", value);
+    finalResult.isValid = false;
+    finalResult.errorMessage = "Blood pressure value must be in the format of systolic/diastolic";
+    return finalResult;
+  }
+
   const [systolic, diastolic] = value.split("/");
 
   if (Number(systolic) < 90) {
     finalResult.isValid = false;
-    finalResult.errorMessage = "Blood pressure value cannot be less than 90 mmHg";
+    finalResult.errorMessage = "Systolic pressure value cannot be less than 90 mmHg";
   } 
 
   if (Number(diastolic) < 60) {
     finalResult.isValid = false;
-    finalResult.errorMessage = "Blood pressure value cannot be less than 60 mmHg";
+    finalResult.errorMessage = "Diastolic pressure value cannot be less than 60 mmHg";
   }
 
-  if (Number(systolic) > 140) { 
+  if (Number(systolic) > 200) { 
     finalResult.isValid = false;
-    finalResult.errorMessage = "Blood pressure value cannot be greater than 140 mmHg";
+    finalResult.errorMessage = "Systolic pressure value cannot be greater than 140 mmHg";
   }
 
-  if (Number(diastolic) > 90) {
+  if (Number(diastolic) > 120) {
     finalResult.isValid = false;
-    finalResult.errorMessage = "Blood pressure value cannot be greater than 90 mmHg";
+    finalResult.errorMessage = "Diastolic pressure value cannot be greater than 90 mmHg";
   }
 
   return finalResult;

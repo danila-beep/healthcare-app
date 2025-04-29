@@ -12,11 +12,7 @@ export default function Home() {
           <Header />
           <MedicalMetricGrid className="mt-10" />
         </div>
-        {/* <BMICalculator /> */}
       </div>
-      {/* <Modal isOpen={isOpen} onClose={close}>
-        <EditMetricModalContent activeMetricName={activeMetricName} handleCloseModal={handleCloseModal}/>
-      </Modal> */}
     </main>
   );
 }

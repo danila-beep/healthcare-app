@@ -1,4 +1,4 @@
-import { useStore } from "@/app/providers/StoreProvider";
+import { useStore } from "@/app/store/StoreContext";
 
 export const useNavigationStore = () => {
     const { navigationStore } = useStore();
