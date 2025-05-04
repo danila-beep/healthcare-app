@@ -8,6 +8,10 @@
     --calendar-btn-shadow-hover: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
 }
 
+.react-calendar *{
+    transition: all 0.2s ease-in-out;
+}
+
 .react-calendar__month-view__weekdays__weekday {
     text-align: center;
     font-size: 18px;
