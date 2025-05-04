@@ -1,3 +1,13 @@
+export type CalendarEvent = {
+  date: Date;
+  time?: string;
+  title: string;
+  description?: string;
+  place?: string;
+  type: 'appointment' | 'reminder' | 'task' | 'training' | 'other' | string;
+  color?: string;
+}
+
 export type NotificationType = 'health' | 'system';
 
 export interface INotification {
@@ -72,4 +82,5 @@ export interface IUser {
   gender: string;
   healthMetrics: IHealthMetric[];
   notifications: INotification[];
+  events: CalendarEvent[];
 }

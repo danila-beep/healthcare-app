@@ -110,4 +110,12 @@ export const userSample: IUser = {
   ],
   notifications: [
   ],
+  events: [
+    {
+      date: new Date(),
+      title: 'Прием у врача',
+      type: 'appointment',
+      time: '10:00',
+    }
+  ]
 };

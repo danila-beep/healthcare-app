@@ -26,7 +26,7 @@ export const Input = ({ type, value, onChange, error, label, unit }: InputProps)
           value={value}
           onChange={handleChange}
         />
-        {unit && <span className="text-sm text-gray-500">{unit}</span>}
+        {unit && <span className="text-sm text-gray-500 whitespace-nowrap">{unit}</span>}
       </div>
 
       {error && <p className="text-red-500 text-sm">{error}</p>}

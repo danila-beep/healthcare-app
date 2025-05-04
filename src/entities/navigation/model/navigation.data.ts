@@ -18,13 +18,6 @@ export const navigationData: INavigationData[] = [
     },
     {
         isActive: false,
-        title: "Chat",
-        route: ROUTES.CHAT,
-        icon: "/icons/Chat.svg",
-        alt: "Chat"
-    },
-    {
-        isActive: false,
         title: "Stats",
         route: ROUTES.STATS,
         icon: "/icons/Stats.svg",

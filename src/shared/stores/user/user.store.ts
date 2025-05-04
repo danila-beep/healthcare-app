@@ -1,7 +1,7 @@
 "use client";
 import { makeAutoObservable } from "mobx";
-import { IUser, IHealthMetric, INotification } from "./user.types";
 import { userSample } from "@/entities/user/model/user.data";
+import { IHealthMetric, INotification, IUser } from "@/entities/user/model/user.types";
 
 const userLocalStorageKey = "user";
 
@@ -94,6 +94,13 @@ class UsersStore {
     return this.userData.notifications.filter(
       (notification) => !notification.isRead
     );
+  };
+
+  public getUserEvents = () => {
+    if (!this.userData && isClient) {
+      this.initializeStore();
+    }
+    return this.userData.events;
   };
 
   // Actions / Setters

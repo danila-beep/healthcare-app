@@ -28,7 +28,7 @@ export const MedicalMetricCard = ({ metric, onClick }: { metric: IHealthMetric, 
         <p className="text-3xl font-normal text-black">{metric.value}</p>
         <p className="text-sm text-gray-500">{metric.unit}</p>
       </div>
-      <p className={cn("text-sm font-normal mt-3 w-fit px-2 py-1 rounded-md", `bg-[${metric.status?.statusBgColor}]`)}>{metric.status?.status}</p>
+      <p className={cn("text-sm font-normal mt-3 w-fit px-2 py-1 rounded-md")} style={{ backgroundColor: metric.status?.statusBgColor }}>{metric.status?.status}</p>
       {metric.description && <p className="text-sm text-gray-500 mt-3">{metric.description}</p>}
       {metric.graphImage && <Image src={metric.graphImage} alt={metric.title} width={24} height={24} className="w-full h-auto" />}
     </li>
